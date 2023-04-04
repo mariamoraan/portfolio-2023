@@ -32,7 +32,8 @@ const Articles = styled.ul`
     justify-content: center;
     gap: 24px;
     @media screen and (max-width: 800px) {
-        max-width: 100%;
+        padding: 24px 0;
+        width: calc(100% - 0);
         flex-direction: column;
     }
 `
