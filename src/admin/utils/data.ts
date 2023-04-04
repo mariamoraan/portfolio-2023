@@ -49,7 +49,6 @@ export const getOpinions = async() =>  {
 }
 
 export const getProjects = async() =>  {
-    console.log("called")
     const q = query(collection(db, "projects"));
     const querySnapshot = await getDocs(q);
     let projects: IProject[] = []
