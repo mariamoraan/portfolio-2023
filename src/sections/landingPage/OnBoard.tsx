@@ -33,6 +33,14 @@ const ContentWrapper = styled.section`
     flex-direction: column;
     grid-area: 1 / 2 / span 1 / span 3;
     text-align: center;
+    @media screen and (max-width: 800px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        text-align: center;
+    }
 `;
 
 const WavesWrapper = styled.div`
