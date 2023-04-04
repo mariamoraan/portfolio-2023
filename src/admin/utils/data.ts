@@ -1,4 +1,5 @@
 import { addDoc, collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { IProject } from "../../sections/landingPage/Projects";
 import { IArticle } from "../../types/Article";
 import { IOpinion } from "../../types/Opinion";
 import { db } from '../firebase';
@@ -10,6 +11,11 @@ export const addArticle = async(article: IArticle) => {
 
 export const addOpinion = async(opinion: IOpinion) => {
     const docRef = await addDoc(collection(db, "opinions"), opinion);
+    console.log("Document written with ID: ", docRef.id)
+}
+
+export const addProject = async(project: IProject) => {
+    const docRef = await addDoc(collection(db, "projects"), project);
     console.log("Document written with ID: ", docRef.id)
 }
 
@@ -40,4 +46,22 @@ export const getOpinions = async() =>  {
         })
     });
     return opinions
+}
+
+export const getProjects = async() =>  {
+    console.log("called")
+    const q = query(collection(db, "projects"));
+    const querySnapshot = await getDocs(q);
+    let projects: IProject[] = []
+    querySnapshot.forEach((doc) => {
+        projects.push({
+            image: doc.data().image,
+            project:  doc.data().project,
+            idea:  doc.data().idea,
+            backgroundColor:  doc.data().backgroundColor,
+            color:  doc.data().color,
+            url:  doc.data().url,
+        })
+    });
+    return projects
 }

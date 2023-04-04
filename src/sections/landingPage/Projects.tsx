@@ -1,6 +1,8 @@
 import { ArrowForwardRounded } from "@mui/icons-material";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+import { getProjects } from "../../admin/utils/data";
 import { CenteredTitle } from "../../common/components/Title";
 
 const Wrapper = styled.section`
@@ -93,7 +95,7 @@ const ProjectInfoDescription = styled.p`
     font-size: 20px;
 `
 
-interface IProject  {
+export interface IProject  {
     image: string,
     project: string,
     idea: string,
@@ -102,21 +104,21 @@ interface IProject  {
     url: string,
 }
 
-const PROJECTS: IProject[] = [
-    {image: "https://www.mariamoran.es/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fwhvmxfqhgwx6%2F3OmcG5B2y2qyUkxTvmTmOJ%2F5a56f1d1d383bbacf959183f5e2117b0%2FzLPwfrydjEwC2sI7RzyPorcawebsite.jpg&w=3840&q=75", project: "Website of Orca.", idea: "Orca Website", backgroundColor: "#B6CCDB", color: "#F9F9FB", url: "https://getorca.com/"},
-    {image: "https://www.mariamoran.es/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fwhvmxfqhgwx6%2F4TkEdBdDj7tsjhHilAfr8X%2F178ff9690e28506f424d5348f90ea3e9%2Fhomepage.jpg&w=3840&q=75", project: "React App. Landing page for furniture shop.", idea: "Landing Page", backgroundColor: "#A4A6A7", color: "#F9F9FB", url:"https://mariamoraan.github.io/room-homepage/"},
-    {image: "https://www.mariamoran.es/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fwhvmxfqhgwx6%2F4MwASCZWYcKdRNGh6wdOTI%2F9f07d6b0a62b93179f0bf350367ffaa6%2Fbankweb.jpg&w=3840&q=75", project: "React App. Landing page for bank.", idea: "Bank Landing Page", backgroundColor: "#AFDCC6", color: "#F9F9FB", url:"https://mariamoraan.github.io/landing-page/"},
-]
-
-
 const Projects = () => {
     const [t] = useTranslation()
+    const [projects, setProjects] = useState<IProject[]>([])
+    useEffect(() => {
+        const setProjectsAsync = async() => {
+            setProjects(await getProjects())
+        }
+        setProjectsAsync()
+    }, [])
     return (
         <Wrapper id="work"> 
             <CenteredTitle>{t("projects")}</CenteredTitle>
             <ProjectsWrapper>
                 {
-                    PROJECTS.map((project) => (
+                    projects.map((project) => (
                         <Project key={project.image} backgroundColor={project.backgroundColor} color={project.color} >
                             <ProjectInfo>
                                 <ProjectInfoText>
