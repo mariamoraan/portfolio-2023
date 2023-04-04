@@ -14,7 +14,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 1000px) {
         padding: 0 24px;
         max-width: auto;
     }

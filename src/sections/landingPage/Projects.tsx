@@ -19,6 +19,9 @@ const Wrapper = styled.section`
     justify-content: center;
     align-items: center;
     background: #F9F9FB;
+    @media only screen and (max-width: 800px) {
+        padding: 12px;
+    }
 `;
 
 const ProjectsWrapper = styled.div`
@@ -27,7 +30,7 @@ const ProjectsWrapper = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     gap: 12px;
-    @media only screen and (max-width: 1000px) {
+    @media only screen and (max-width: 800px) {
         width: 100%;
         flex-direction: column;
         align-items: center;
@@ -43,8 +46,9 @@ const Project = styled.div<{backgroundColor: string, color: string}>`
     background: ${props => props.backgroundColor};
     border-radius: 12px;
     color: ${props => props.color};
-    @media only screen and (max-width: 1000px) {
-        max-width: 80%;
+    @media only screen and (max-width: 800px) {
+        max-width: 100%;
+        width: 100%;
     }
 `
 

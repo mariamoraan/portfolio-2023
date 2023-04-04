@@ -19,6 +19,9 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: center;
     background: #F9F9FB;
+    @media only screen and (max-width: 800px) {
+        padding: 12px;
+    }
 `;
 
 const Articles = styled.ul`
@@ -28,8 +31,8 @@ const Articles = styled.ul`
     display: flex;
     justify-content: center;
     gap: 24px;
-    @media screen and (max-width: 1000px) {
-        max-width: 80%;
+    @media screen and (max-width: 800px) {
+        max-width: 100%;
         flex-direction: column;
     }
 `
