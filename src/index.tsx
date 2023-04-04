@@ -1,15 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from "react-router-dom";
+import BlogAdmin from './admin/pages/BlogAdmin';
+import OpinionsAdmin from './admin/pages/OpinionsAdmin';
+import './i18n';
 import './index.css';
-import App from './App';
+import AdminPanel from './pages/AdminPanel';
+import LandingPage from './pages/LandingPage';
 import reportWebVitals from './reportWebVitals';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LandingPage />,
+  },
+  {
+    path: "/admin",
+    element: <AdminPanel />,
+    children: [
+      {
+        path: "opinions",
+        element: <OpinionsAdmin />,
+      },
+      {
+        path: "blog",
+        element: <BlogAdmin />,
+      },
+    ],
+  }
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+     <RouterProvider router={router} />
   </React.StrictMode>
 );
 
